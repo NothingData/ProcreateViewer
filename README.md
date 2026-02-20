@@ -1,6 +1,5 @@
 # ProcreateViewer for Windows - The Ultimate .procreate File Viewer
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;"> <img width="500" height="500" alt="ProcreateViewer Logo" src="https://github.com/user-attachments/assets/62274360-731f-462a-8701-afc7b537633d" /> </div>
-
+<img width="500" height="500" alt="ProcreateViewer Logo" src="https://github.com/user-attachments/assets/62274360-731f-462a-8701-afc7b537633d" style="display: block; margin-left: auto; margin-right: auto;" />
 
 **Preview, open, and export [Procreate](https://procreate.com/) files (`.procreate`) directly on Windows — with native thumbnail previews in File Explorer, just like `.png` or `.jpg` files!**
 
@@ -218,6 +217,7 @@ Contributions welcome! Feel free to:
 ---
 
 **Made with ❤️ for digital artists who use Procreate and Windows**
+
 
 
 
