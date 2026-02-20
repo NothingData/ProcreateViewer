@@ -9,6 +9,22 @@ Are you an iPad artist using Procreate but working on a Windows PC? **ProcreateV
 ![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078d4.svg)
 ![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
 
+### [🌐 Visit Official Website](https://nothingdata.github.io/ProcreateViewer/)
+
+---
+
+## 📸 Screenshots
+
+### Before & After
+| **Before (Unrecognized Files)** | **After (Native Thumbnails)** |
+|:---:|:---:|
+| <img src="docs/assets/before.webp" width="400" alt="Before: Windows cannot recognize .procreate files"> | <img src="docs/assets/after.webp" width="400" alt="After: ProcreateViewer enables thumbnails"> |
+
+### App Interface
+<p align="center">
+  <img src="docs/assets/screen1.webp" width="800" alt="ProcreateViewer Main Interface">
+</p>
+
 ---
 
 ## ✨ Features & Capabilities
@@ -217,7 +233,6 @@ Contributions welcome! Feel free to:
 ---
 
 **Made with ❤️ for digital artists who use Procreate and Windows**
-
 
 
 
