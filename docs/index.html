@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ProcreateViewer for Windows — Open .procreate Files on PC | Free &amp; Open Source</title>
+    <meta name="description" content="Free open-source Windows viewer for Procreate (.procreate) files. Native File Explorer thumbnails, layer inspection, batch export to PNG/JPEG. No iPad needed.">
+    <meta name="keywords" content="procreate viewer, procreate windows, open procreate files on pc, procreate file viewer, procreate to png, procreate thumbnail windows, view procreate on windows, procreate converter, procreate export, digital art viewer, ipad procreate windows, procreate backup viewer, procreate layer viewer, free procreate viewer, procreate file opener, procreate preview windows, procreate explorer thumbnail, procreate batch convert, procreate to jpeg, procreate artwork viewer">
+    <meta name="author" content="NothingData">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ProcreateViewer for Windows — Open .procreate Files on PC">
+    <meta property="og:description" content="Free open-source application to view, preview and export Procreate artwork files on Windows. Native File Explorer thumbnails, layer tree, batch export.">
+    <meta property="og:url" content="https://nothingdata.github.io/ProcreateViewer/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ProcreateViewer — View Procreate Files on Windows">
+    <meta name="twitter:description" content="Open, preview and export .procreate files on your Windows PC. Free, offline, open source.">
+
+    <link rel="canonical" href="https://nothingdata.github.io/ProcreateViewer/">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADcUlEQVR4nMWXv0srWRTHv+eciwwkUcEfyAOximAEi2W12WzzeBIevE4C/qheuaX/gI1gIxY2bmlpYRtZC9lmsXGXFIaJoAjC4jOgYiRZ0GTuPVtE89yn687EhP3CwDAznO/nnnvmnnsJDQkAOzExEVPVOVX96JwbxlcRWpM+3jDzn0T0CxFtHR4e/vXoSdlsVra3t+3Y2NiPIvIzEY0DgKqCqFXfbyiexFJV31r709HR0W/ZbFYIAMbHx39g5l8BdFlrLbXL+TmIiogAqDnn3vu+v0+pVCpORHlmTlprAyIynTB/AhGIiHHOnajqdwxg7sHcdtocAIjIWGstMycBzDERfQKgHcr6v0HgwfOTUdV3aFR5KIKXQFX1hS9fDwOAVPVdpJSrKpxzz54zM5gZRARrbSSSSADGGBhjno24VquhUqlAVZFIJCJlJBSAiKBcLmNxcRGzs7MIggDMDOccVBV3d3c4OzvDzs4OcrkcPM9rLwAAOOfQ29uLoaGhF98nk0lMT09jcnISS0tLiMViL07Xt+LQqACCIGjWQT6fx/LyMjY2NnB6etp8v7CwgHQ6jUqlAub/Dh8JgIhARGBmFAoFrK6uYmVlBfPz87i4uAAzQ1WRTqdRr9dDLeWRAJ7K8zwMDAxgeHgYpVIJhUKhOeKenp5Qowci/gVPVavVcHt72whiDEZGRppN5+rqKtT8vwlgcHAQU1NT6O/vx8zMDEZHR+Gcg4hgb28PnueF+h1bArDWIpPJIJPJ/OO5iGBtbQ35fB7d3d2hstCW5lOtVnF8fIzNzU3kcjkkEonOToGIYHd3F+vr64jH47i+vsb5+Tnu7+9Dj/xNAABweXmJg4MD9PX1gYjQ1dUFz/M62wtUtVlYxhjE43HEYrHmAhXVPDKAMaa5uIgInHPNftCqQgMwM8rlMkqlEgDg5uYm9GLzmiiVSv0uIt+7RuW8GlFEYEyD2VqLIAha9XXMzNbaPyJNQRAEqNfrAL72hbcqEsBjIwJa2oa9DEBEX9A4wYSK2CZjRWNT+oVVNYfGBrEdgcO5N7xIVXMMYMs5dyIioqotV1UE80BExDl3AmCLi8ViFcBnADURMapqAbhOXKpqRcQAqAH4XCwWq5zNZsX3/f0gCD6oqi8iwsxMRNwuPcZ6yLIfBMEH3/f3m4dT/I/H878B8KrGyBMQ4fAAAAAASUVORK5CYII=">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg:#0a0a0a;--bg-alt:#111111;--bg-card:#161616;--bg-card-h:#1e1e1e;
+            --bg-input:#1a1a1a;--text:#f5f5f5;--text-2:#999;--text-3:#555;
+            --blue:#3b82f6;--blue-h:#2563eb;--green:#22c55e;--orange:#f59e0b;
+            --purple:#a78bfa;--red:#ef4444;--cyan:#22d3ee;--pink:#ec4899;
+            --border:#1f1f1f;--border-2:#2a2a2a;--radius:12px;
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;overflow-x:hidden}
+        a{color:var(--blue);text-decoration:none;transition:color .15s}a:hover{color:var(--cyan)}
+        code{font-family:'JetBrains Mono',monospace;background:var(--bg-card);padding:2px 7px;border-radius:5px;font-size:.88em;color:var(--cyan)}
+        .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+
+        /* ── NAV ── */
+        nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(10,10,10,.92);backdrop-filter:blur(16px)saturate(180%);border-bottom:1px solid var(--border);padding:0 0}
+        .nav-inner{display:flex;justify-content:space-between;align-items:center;height:64px}
+        .nav-brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.15rem;color:var(--text)}
+        .nav-brand img{width:32px;height:32px;border-radius:6px}
+        .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+        .nav-links a{color:var(--text-2);font-size:.9rem;font-weight:500;transition:color .15s}
+        .nav-links a:hover{color:var(--text)}
+        .nav-gh{display:inline-flex;align-items:center;gap:8px;background:var(--bg-card);border:1px solid var(--border-2);padding:8px 18px;border-radius:8px;color:var(--text)!important;font-weight:600;font-size:.88rem;transition:background .15s,border-color .15s}
+        .nav-gh:hover{background:var(--bg-card-h);border-color:#444}
+        .mobile-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer}
+
+        /* ── HERO ── */
+        .hero{padding:160px 0 110px;text-align:center;position:relative}
+        .hero::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(59,130,246,.06)0%,transparent 70%);pointer-events:none}
+        .hero-tag{display:inline-flex;align-items:center;gap:10px;background:var(--bg-card);border:1px solid var(--border-2);padding:8px 20px;border-radius:50px;font-size:.82rem;color:var(--text-2);margin-bottom:28px}
+        .hero-tag i{color:var(--green);font-size:.75rem}
+        .hero h1{font-size:clamp(2.6rem,5.5vw,4.2rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:28px}
+        .hero h1 .hl{color:var(--blue)}
+        .hero-sub{font-size:1.2rem;color:var(--text-2);max-width:680px;margin:0 auto 44px;line-height:1.85;font-weight:400}
+        .hero-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:60px}
+        .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 30px;border-radius:10px;font-weight:600;font-size:.95rem;transition:all .18s;cursor:pointer;border:none;font-family:inherit}
+        .btn-blue{background:var(--blue);color:#fff}.btn-blue:hover{background:var(--blue-h);color:#fff}
+        .btn-dark{background:var(--bg-card);color:var(--text);border:1px solid var(--border-2)}.btn-dark:hover{background:var(--bg-card-h);border-color:#444;color:var(--text)}
+        .stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+        .stat{text-align:center}
+        .stat-val{font-size:1.8rem;font-weight:800;letter-spacing:-.02em}
+        .stat-lbl{font-size:.82rem;color:var(--text-3);margin-top:2px;font-weight:500}
+
+        /* ── SECTIONS ── */
+        section{padding:100px 0}
+        .sec-alt{background:var(--bg-alt);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+        .sec-lbl{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+        .sec-lbl.c-blue{color:var(--blue)}.sec-lbl.c-green{color:var(--green)}.sec-lbl.c-orange{color:var(--orange)}.sec-lbl.c-purple{color:var(--purple)}.sec-lbl.c-cyan{color:var(--cyan)}
+        .sec-title{font-size:clamp(2rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-.02em;margin-bottom:18px;line-height:1.15}
+        .sec-desc{font-size:1.08rem;color:var(--text-2);max-width:760px;margin-bottom:54px;line-height:1.85}
+        .center-txt{text-align:center}.center-txt .sec-desc{margin-left:auto;margin-right:auto}
+
+        /* ── PROBLEM ── */
+        .cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+        .cmp-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:32px}
+        .cmp-card.bad{border-left:3px solid var(--red)}.cmp-card.good{border-left:3px solid var(--green)}
+        .cmp-icon{font-size:1.6rem;margin-bottom:14px}
+        .cmp-card.bad .cmp-icon{color:var(--red)}.cmp-card.good .cmp-icon{color:var(--green)}
+        .cmp-card h3{font-size:1.15rem;font-weight:700;margin-bottom:10px}
+        .cmp-card p{color:var(--text-2);font-size:.93rem;margin-bottom:18px}
+        .cmp-card ul{padding-left:0;list-style:none}
+        .cmp-card li{font-size:.9rem;color:var(--text-2);margin-bottom:9px;display:flex;align-items:flex-start;gap:10px}
+        .cmp-card.bad li::before{content:'\f00d';font-family:'Font Awesome 6 Free';font-weight:900;color:var(--red);font-size:.72rem;margin-top:5px;flex-shrink:0}
+        .cmp-card.good li::before{content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;color:var(--green);font-size:.72rem;margin-top:5px;flex-shrink:0}
+
+        /* ── FEATURES ── */
+        .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+        .feat{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:transform .2s,border-color .2s}
+        .feat:hover{transform:translateY(-5px);border-color:var(--border-2)}
+        .feat-ico{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:22px}
+        .fi-blue{background:rgba(59,130,246,.12);color:var(--blue)}
+        .fi-green{background:rgba(34,197,94,.12);color:var(--green)}
+        .fi-orange{background:rgba(245,158,11,.12);color:var(--orange)}
+        .fi-purple{background:rgba(167,139,250,.12);color:var(--purple)}
+        .fi-cyan{background:rgba(34,211,238,.12);color:var(--cyan)}
+        .fi-pink{background:rgba(236,72,153,.12);color:var(--pink)}
+        .feat h3{font-size:1.08rem;font-weight:700;margin-bottom:10px}
+        .feat>p{color:var(--text-2);font-size:.92rem;line-height:1.75}
+        .feat-sub{margin-top:18px;padding-top:16px;border-top:1px solid var(--border);list-style:none}
+        .feat-sub li{font-size:.82rem;color:var(--text-3);margin-bottom:5px;display:flex;align-items:center;gap:8px}
+        .feat-sub li i{color:var(--green);font-size:.65rem}
+
+        /* ── DEMO ── */
+        .demo-split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+        .demo-txt h2{font-size:2.2rem;font-weight:800;margin-bottom:18px;letter-spacing:-.02em}
+        .demo-txt>p{color:var(--text-2);margin-bottom:26px;line-height:1.85;font-size:1rem}
+        .d-list{list-style:none}
+        .d-list li{display:flex;gap:14px;margin-bottom:18px;color:var(--text-2);font-size:.95rem;line-height:1.6}
+        .d-list li i{color:var(--blue);margin-top:3px;flex-shrink:0}
+        .d-note{color:var(--text-3);font-size:.85rem;margin-top:20px;display:flex;align-items:flex-start;gap:8px}
+        .d-note i{margin-top:3px}
+        .demo-box{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+        .demo-bar{background:var(--bg);padding:12px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+        .dot{width:12px;height:12px;border-radius:50%}.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
+        .demo-body{padding:44px;text-align:center;min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+        .drop{border:2px dashed var(--border-2);border-radius:var(--radius);padding:52px 40px;cursor:pointer;transition:border-color .2s,background .2s;width:100%}
+        .drop:hover{border-color:var(--blue);background:rgba(59,130,246,.04)}
+        .drop-ico{font-size:2.8rem;color:var(--text-3);margin-bottom:18px}
+        .drop h4{font-weight:600;margin-bottom:6px;font-size:1rem}
+        .drop p{color:var(--text-3);font-size:.88rem;margin:0}
+        #previewResult{display:none;width:100%}
+        #previewResult img{max-width:100%;max-height:260px;border-radius:8px;margin-bottom:22px}
+        .meta{background:var(--bg);border-radius:10px;padding:18px;text-align:left}
+        .meta-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:.88rem}
+        .meta-row:last-child{border:none}
+        .meta-k{color:var(--text-3)}.meta-v{color:var(--text);font-weight:600}
+
+        /* ── TECH ── */
+        .tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+        .tech-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+        .tech-head{background:var(--bg);padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px}
+        .tech-head i{font-size:1.2rem;color:var(--blue)}
+        .tech-head h3{font-size:1.05rem;font-weight:700}
+        .tech-body{padding:24px}
+        .tech-body>p{color:var(--text-2);font-size:.92rem;margin-bottom:20px}
+        .tt{width:100%;border-collapse:collapse}
+        .tt th,.tt td{text-align:left;padding:12px;border-bottom:1px solid var(--border);font-size:.88rem}
+        .tt th{color:var(--text-3);font-weight:500;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em}
+        .tt td{color:var(--text-2)}
+        .tt tr:last-child td{border:none}
+        .code-box{background:var(--bg);border-radius:8px;padding:20px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.7;color:var(--text-2)}
+        .cm{color:#6a9955}.kw{color:#569cd6}.st{color:#ce9178}.fn{color:#dcdcaa}
+
+        /* ── INSTALL ── */
+        .inst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:54px}
+        .inst{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:34px;text-align:center;position:relative;transition:border-color .2s}
+        .inst:hover{border-color:var(--border-2)}
+        .inst.rec{border-color:var(--green)}
+        .inst.rec::before{content:'Recommended';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;font-size:.72rem;font-weight:700;padding:4px 14px;border-radius:50px}
+        .inst-ico{font-size:2.4rem;margin-bottom:22px}
+        .inst.rec .inst-ico{color:var(--green)}.inst:nth-child(2) .inst-ico{color:var(--orange)}.inst:nth-child(3) .inst-ico{color:var(--purple)}
+        .inst h3{font-size:1.15rem;font-weight:700;margin-bottom:10px}
+        .inst>p{color:var(--text-2);font-size:.9rem;margin-bottom:24px;line-height:1.7}
+        .inst .btn{width:100%;justify-content:center;margin-bottom:20px}
+        .steps{text-align:left;background:var(--bg);border-radius:10px;padding:18px;list-style:none}
+        .steps li{font-size:.82rem;color:var(--text-2);margin-bottom:8px;display:flex;align-items:flex-start;gap:10px}
+        .steps li:last-child{margin-bottom:0}
+        .snum{background:var(--blue);color:#fff;min-width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;flex-shrink:0}
+
+        /* ── FAQ ── */
+        .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:48px}
+        .faq{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:26px}
+        .faq h4{display:flex;align-items:center;gap:12px;font-size:1rem;font-weight:700;margin-bottom:10px}
+        .faq h4 i{color:var(--orange);font-size:.9rem}
+        .faq p{color:var(--text-2);font-size:.92rem;line-height:1.75}
+
+        /* ── CTA ── */
+        .cta-section{text-align:center;padding:120px 0}
+        .cta-section h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;margin-bottom:20px}
+        .cta-section>p,.cta-section .wrap>p{color:var(--text-2);font-size:1.12rem;margin-bottom:44px;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.85}
+
+        /* ── FOOTER ── */
+        footer{border-top:1px solid var(--border);padding:64px 0 40px}
+        .ft-grid{display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr;gap:60px;margin-bottom:48px}
+        .ft-brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.15rem;margin-bottom:14px}
+        .ft-brand img{width:28px;height:28px;border-radius:6px}
+        .ft-about{color:var(--text-2);font-size:.88rem;line-height:1.75}
+        .ft-note{color:var(--text-3);font-size:.8rem;margin-top:12px}
+        .ft-col h5{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px;color:var(--text)}
+        .ft-col ul{list-style:none}.ft-col li{margin-bottom:10px}
+        .ft-col a{color:var(--text-2);font-size:.88rem;transition:color .15s}.ft-col a:hover{color:var(--text)}
+        .ft-bot{display:flex;justify-content:space-between;align-items:center;padding-top:32px;border-top:1px solid var(--border);color:var(--text-3);font-size:.82rem}
+        .ft-soc{display:flex;gap:18px}
+        .ft-soc a{color:var(--text-3);font-size:1.15rem;transition:color .15s}.ft-soc a:hover{color:var(--text)}
+
+        /* ── RESPONSIVE ── */
+        @media(max-width:1080px){.feat-grid,.inst-grid{grid-template-columns:repeat(2,1fr)}.tech-grid{grid-template-columns:1fr}.demo-split{grid-template-columns:1fr;gap:40px}.ft-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:720px){
+            .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);flex-direction:column;padding:24px;gap:20px}
+            .nav-links.open{display:flex}
+            .mobile-toggle{display:block}
+            .hero h1{font-size:2.4rem}.hero{padding:130px 0 80px}
+            .feat-grid,.inst-grid,.cmp-grid,.faq-grid{grid-template-columns:1fr}
+            .stats{gap:24px}
+            .ft-grid{grid-template-columns:1fr;gap:36px}
+            .ft-bot{flex-direction:column;gap:16px;text-align:center}
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="wrap nav-inner">
+        <div class="nav-brand">
+            <img src="/..resources/logo.ico" alt="ProcreateViewer">
+            ProcreateViewer
+        </div>
+        <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#demo">Demo</a></li>
+            <li><a href="#tech">Technical</a></li>
+            <li><a href="#install">Install</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="https://github.com/NothingData/ProcreateViewer" class="nav-gh"><i class="fa-brands fa-github"></i> Source Code</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="wrap">
+        <div class="hero-tag"><i class="fa-solid fa-circle"></i> Open Source &nbsp;·&nbsp; MIT License &nbsp;·&nbsp; 100% Free &nbsp;·&nbsp; Offline</div>
+        <h1>Open <span class="hl">.procreate</span> Files<br>on Your Windows PC</h1>
+        <p class="hero-sub">The missing tool for digital artists. Get native File Explorer thumbnails, inspect layers, and export your iPad artwork to PNG, JPEG, TIFF — no subscription, no cloud, works offline.</p>
+        <div class="hero-btns">
+            <a href="https://github.com/NothingData/ProcreateViewer/releases" class="btn btn-blue">
+                <i class="fa-solid fa-arrow-down"></i> Download for Windows
+            </a>
+            <a href="#demo" class="btn btn-dark">
+                <i class="fa-solid fa-play"></i> Try in Browser
+            </a>
+            <a href="https://github.com/NothingData/ProcreateViewer" class="btn btn-dark">
+                <i class="fa-brands fa-github"></i> View on GitHub
+            </a>
+        </div>
+        <div class="stats">
+            <div class="stat"><div class="stat-val">100%</div><div class="stat-lbl">Free &amp; Open Source</div></div>
+            <div class="stat"><div class="stat-val">~25 MB</div><div class="stat-lbl">Standalone .exe</div></div>
+            <div class="stat"><div class="stat-val">Win 10/11</div><div class="stat-lbl">Full Support</div></div>
+            <div class="stat"><div class="stat-val">0</div><div class="stat-lbl">Dependencies to Install</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="sec-alt">
+    <div class="wrap">
+        <div class="sec-lbl c-orange"><i class="fa-solid fa-lightbulb"></i> The Problem</div>
+        <h2 class="sec-title">Why You Need ProcreateViewer</h2>
+        <p class="sec-desc">Millions of artists use Procreate on iPad. But the moment you transfer those <code>.procreate</code> project files to a Windows PC, they become mysterious blank icons. You can't tell which painting is which without sending them back to an iPad.</p>
+        <div class="cmp-grid">
+            <div class="cmp-card bad">
+                <div class="cmp-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                <h3>Without ProcreateViewer</h3>
+                <p>Your artwork files are invisible. Windows has no idea how to read them.</p>
+                <ul>
+                    <li>Generic blank file icons in Explorer</li>
+                    <li>Cannot preview artwork contents</li>
+                    <li>Must transfer back to iPad to view</li>
+                    <li>No metadata — canvas size, layers are hidden</li>
+                    <li>Impossible to organize a large portfolio</li>
+                    <li>No batch export or conversion available</li>
+                </ul>
+            </div>
+            <div class="cmp-card good">
+                <div class="cmp-icon"><i class="fa-solid fa-circle-check"></i></div>
+                <h3>With ProcreateViewer Installed</h3>
+                <p>Full visibility. Your artwork looks just as at home as your JPEGs and PNGs.</p>
+                <ul>
+                    <li>Rich thumbnail previews in File Explorer</li>
+                    <li>Double-click to open and inspect</li>
+                    <li>View directly on PC — no iPad required</li>
+                    <li>See canvas size, DPI, layer count, blend modes</li>
+                    <li>Visually browse and manage hundreds of files</li>
+                    <li>Batch convert entire folders to PNG/JPEG</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+    <div class="wrap center-txt">
+        <div class="sec-lbl c-blue"><i class="fa-solid fa-bolt"></i> Features</div>
+        <h2 class="sec-title">Everything You Need to Work with Procreate Files on Windows</h2>
+        <p class="sec-desc">A complete toolkit for viewing, inspecting, and converting Procreate artwork — all in one lightweight, offline application.</p>
+        <div class="feat-grid" style="text-align:left">
+            <div class="feat">
+                <div class="feat-ico fi-blue"><i class="fa-solid fa-images"></i></div>
+                <h3>Native Explorer Thumbnails</h3>
+                <p>See beautiful preview images for every <code>.procreate</code> file right inside Windows File Explorer — the same way you see JPEG or PNG thumbnails. Instantly identify your artwork at a glance.</p>
+                <ul class="feat-sub">
+                    <li><i class="fa-solid fa-check"></i>All folder view modes (large icons, tiles, etc.)</li>
+                    <li><i class="fa-solid fa-check"></i>Windows thumbnail caching for fast browsing</li>
+                    <li><i class="fa-solid fa-check"></i>High-resolution previews up to 512px</li>
+                    <li><i class="fa-solid fa-check"></i>Automatic — no manual steps after install</li>
+                </ul>
+            </div>
+            <div class="feat">
+                <div class="feat-ico fi-green"><i class="fa-solid fa-expand"></i></div>
+                <h3>Full Artwork Viewer</h3>
+                <p>A dedicated desktop application with a dark theme UI inspired by Procreate itself. Open any <code>.procreate</code> file to see the full artwork with smooth zoom and pan controls.</p>
+                <ul class="feat-sub">
+                    <li><i class="fa-solid fa-check"></i>Smooth zoom in/out with mouse wheel</li>
+                    <li><i class="fa-solid fa-check"></i>Click and drag to pan around</li>
+                    <li><i class="fa-solid fa-check"></i>Drag &amp; drop files directly onto the window</li>
+                    <li><i class="fa-solid fa-check"></i>Keyboard shortcuts for quick navigation</li>
+                </ul>
+            </div>
+            <div class="feat">
+                <div class="feat-ico fi-purple"><i class="fa-solid fa-layer-group"></i></div>
+                <h3>Layer Inspection &amp; Compositing</h3>
+                <p>View the full layer stack of every painting. See layer names, opacity, visibility, and all 24 Procreate blend modes. Toggle individual layers on or off and re-composite the image.</p>
+                <ul class="feat-sub">
+                    <li><i class="fa-solid fa-check"></i>Layer tree with name, opacity, blend mode</li>
+                    <li><i class="fa-solid fa-check"></i>Toggle visibility per layer</li>
+                    <li><i class="fa-solid fa-check"></i>24 blend modes (Multiply, Screen, etc.)</li>
+                    <li><i class="fa-solid fa-check"></i>Full compositing engine with tile decoding</li>
+                </ul>
+            </div>
+            <div class="feat">
+                <div class="feat-ico fi-orange"><i class="fa-solid fa-file-arrow-down"></i></div>
+                <h3>Multi-Format Export</h3>
+                <p>Export your artwork to industry-standard formats. Get transparent PNGs for the web, high-quality JPEGs for sharing, TIFFs for professional printing, or BMPs for legacy workflows.</p>
+                <ul class="feat-sub">
+                    <li><i class="fa-solid fa-check"></i>PNG with full alpha transparency</li>
+                    <li><i class="fa-solid fa-check"></i>JPEG with adjustable quality setting</li>
+                    <li><i class="fa-solid fa-check"></i>TIFF for print-ready output</li>
+                    <li><i class="fa-solid fa-check"></i>BMP for maximum compatibility</li>
+                </ul>
+            </div>
+            <div class="feat">
+                <div class="feat-ico fi-cyan"><i class="fa-solid fa-arrows-spin"></i></div>
+                <h3>Batch Folder Conversion</h3>
+                <p>Need to convert your entire Procreate archive? Point the batch tool at a folder and convert every <code>.procreate</code> file to your chosen format in one click. Great for portfolio backups.</p>
+                <ul class="feat-sub">
+                    <li><i class="fa-solid fa-check"></i>Select source and output folders</li>
+                    <li><i class="fa-solid fa-check"></i>Progress bar for large batches</li>
+                    <li><i class="fa-solid fa-check"></i>Original file names preserved</li>
+                    <li><i class="fa-solid fa-check"></i>Skip already-converted files</li>
+                </ul>
+            </div>
+            <div class="feat">
+                <div class="feat-ico fi-pink"><i class="fa-solid fa-file-lines"></i></div>
+                <h3>Complete Metadata Display</h3>
+                <p>See every technical detail embedded in your artwork: canvas dimensions in pixels, DPI/resolution, color profile, orientation, total file size, and whether timelapse recording was enabled.</p>
+                <ul class="feat-sub">
+                    <li><i class="fa-solid fa-check"></i>Canvas width × height in pixels</li>
+                    <li><i class="fa-solid fa-check"></i>DPI / resolution information</li>
+                    <li><i class="fa-solid fa-check"></i>Color profile (sRGB, Display P3, etc.)</li>
+                    <li><i class="fa-solid fa-check"></i>Human-readable file size</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DEMO -->
+<section class="sec-alt" id="demo">
+    <div class="wrap">
+        <div class="demo-split">
+            <div class="demo-txt">
+                <div class="sec-lbl c-green"><i class="fa-solid fa-flask-vial"></i> Live Demo</div>
+                <h2>Preview a File Right&nbsp;Now</h2>
+                <p>We ported part of our Python parser to JavaScript. Drop a <code>.procreate</code> file into the panel and see its thumbnail instantly — everything happens in your browser. Nothing is uploaded.</p>
+                <ul class="d-list">
+                    <li><i class="fa-solid fa-shield-halved"></i><div><strong>100% Private</strong> — Processed entirely in your browser. Zero server uploads.</div></li>
+                    <li><i class="fa-solid fa-bolt-lightning"></i><div><strong>Instant Preview</strong> — Extracts the QuickLook thumbnail from the ZIP archive.</div></li>
+                    <li><i class="fa-solid fa-chart-bar"></i><div><strong>File Metadata</strong> — Shows file size, estimated layer count and archive entries.</div></li>
+                </ul>
+                <div class="d-note"><i class="fa-solid fa-circle-info"></i>For full layer compositing, export, and detailed metadata — download the Windows app.</div>
+            </div>
+            <div class="demo-box">
+                <div class="demo-bar"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span></div>
+                <div class="demo-body">
+                    <div class="drop" id="uploadZone">
+                        <div class="drop-ico"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                        <h4>Drop a .procreate file here</h4>
+                        <p>or click to browse</p>
+                        <input type="file" id="fileInput" accept=".procreate" style="display:none">
+                    </div>
+                    <div id="previewResult">
+                        <img id="previewImage" alt="Procreate artwork preview">
+                        <div class="meta" id="fileMeta"></div>
+                        <button class="btn btn-dark" style="margin-top:20px" onclick="resetDemo()"><i class="fa-solid fa-arrow-rotate-left"></i> Try another file</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TECHNICAL -->
+<section id="tech">
+    <div class="wrap">
+        <div class="sec-lbl c-purple"><i class="fa-solid fa-microchip"></i> Architecture</div>
+        <h2 class="sec-title">How It's Built</h2>
+        <p class="sec-desc">ProcreateViewer ships two components: a Windows Shell Extension (C#/.NET) that provides thumbnails, and a Python-based standalone viewer with a full layer compositing engine. Both are open source.</p>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <div class="tech-head"><i class="fa-solid fa-file-zipper"></i><h3>The .procreate Format</h3></div>
+                <div class="tech-body">
+                    <p>A <code>.procreate</code> file is a ZIP archive. Inside you'll find:</p>
+                    <table class="tt">
+                        <tr><th>Path in ZIP</th><th>Content</th></tr>
+                        <tr><td><code>QuickLook/Thumbnail.png</code></td><td>Artwork preview image</td></tr>
+                        <tr><td><code>Document.archive</code></td><td>NSKeyedArchiver binary plist</td></tr>
+                        <tr><td><code>[UUID]/col~row.chunk</code></td><td>Layer tile data (LZ4 / LZO)</td></tr>
+                        <tr><td><code>video/segments/</code></td><td>Timelapse recording data</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-head"><i class="fa-brands fa-windows"></i><h3>Shell Extension (C# COM)</h3></div>
+                <div class="tech-body">
+                    <p>A .NET Framework 4 DLL registered via RegAsm. Implements Windows COM interfaces for Explorer thumbnails.</p>
+                    <table class="tt">
+                        <tr><th>Component</th><th>Purpose</th></tr>
+                        <tr><td><code>IThumbnailProvider</code></td><td>Returns HBITMAP to Explorer</td></tr>
+                        <tr><td><code>IInitializeWithStream</code></td><td>Receives file stream from shell</td></tr>
+                        <tr><td>Manual ZIP parser</td><td>Zero dependencies — reads ZIP headers directly</td></tr>
+                        <tr><td>RegAsm registration</td><td>Standard COM registration flow</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-head"><i class="fa-brands fa-python"></i><h3>Viewer Application</h3></div>
+                <div class="tech-body">
+                    <p>Python + tkinter GUI packaged with PyInstaller into a single .exe. Core parsing example:</p>
+                    <div class="code-box"><span class="cm"># Extract thumbnail from .procreate</span>
+<span class="kw">with</span> zipfile.ZipFile(path) <span class="kw">as</span> z:
+    <span class="kw">with</span> z.open(<span class="st">"QuickLook/Thumbnail.png"</span>) <span class="kw">as</span> f:
+        img = Image.open(io.BytesIO(f.read()))
+</div>
+                    <p style="margin-top:16px">Stack: Python 3.8+, Pillow, tkinter, PyInstaller, lz4</p>
+                </div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-head"><i class="fa-solid fa-puzzle-piece"></i><h3>Layer Compositing Engine</h3></div>
+                <div class="tech-body">
+                    <p>Full tile-based renderer that decompresses layer chunks and composites them into a final image.</p>
+                    <table class="tt">
+                        <tr><th>Feature</th><th>Detail</th></tr>
+                        <tr><td>Tile decompression</td><td>LZ4, LZO, zlib, Apple bv41</td></tr>
+                        <tr><td>Pixel format</td><td>BGRA → RGBA conversion</td></tr>
+                        <tr><td>Alpha compositing</td><td>Pillow <code>alpha_composite</code></td></tr>
+                        <tr><td>Opacity</td><td>Per-layer opacity scaling</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INSTALL -->
+<section class="sec-alt" id="install">
+    <div class="wrap center-txt">
+        <div class="sec-lbl c-cyan"><i class="fa-solid fa-rocket"></i> Get Started</div>
+        <h2 class="sec-title">Three Ways to Install</h2>
+        <p class="sec-desc">Choose the method that suits you. All options give you the full application, thumbnail handler, and file association — completely free.</p>
+        <div class="inst-grid" style="text-align:center">
+            <div class="inst rec">
+                <div class="inst-ico"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <h3>Setup Installer</h3>
+                <p>Download and run the professional Setup wizard. It installs the viewer, registers thumbnails, and sets up file associations — all automatically.</p>
+                <a href="https://github.com/NothingData/ProcreateViewer/releases" class="btn btn-blue"><i class="fa-solid fa-arrow-down"></i> Download Setup</a>
+                <ol class="steps">
+                    <li><span class="snum">1</span> Download ProcreateViewer_Setup.exe from Releases</li>
+                    <li><span class="snum">2</span> Run the installer and follow the wizard</li>
+                    <li><span class="snum">3</span> Choose components (thumbnails, file association)</li>
+                    <li><span class="snum">4</span> Done — thumbnails appear in Explorer</li>
+                </ol>
+            </div>
+            <div class="inst">
+                <div class="inst-ico"><i class="fa-solid fa-terminal"></i></div>
+                <h3>Script Install</h3>
+                <p>Prefer a script? Clone the repo (or download the ZIP), then right-click INSTALL.bat and run as administrator. That's it.</p>
+                <a href="https://github.com/NothingData/ProcreateViewer" class="btn btn-dark"><i class="fa-brands fa-github"></i> Clone Repository</a>
+                <ol class="steps">
+                    <li><span class="snum">1</span> Clone or download the repository</li>
+                    <li><span class="snum">2</span> Right-click <strong>INSTALL.bat</strong></li>
+                    <li><span class="snum">3</span> Select "Run as administrator"</li>
+                    <li><span class="snum">4</span> Restart Explorer or sign out / sign in</li>
+                </ol>
+            </div>
+            <div class="inst">
+                <div class="inst-ico"><i class="fa-solid fa-code"></i></div>
+                <h3>Build from Source</h3>
+                <p>For developers. Clone the repository, install Python 3.8+, and run <code>build.bat</code> to compile everything from scratch.</p>
+                <a href="https://github.com/NothingData/ProcreateViewer" class="btn btn-dark"><i class="fa-solid fa-code-branch"></i> View Source</a>
+                <ol class="steps">
+                    <li><span class="snum">1</span> Install Python 3.8+ and Git</li>
+                    <li><span class="snum">2</span> <code>git clone</code> the repository</li>
+                    <li><span class="snum">3</span> Run <code>build.bat</code></li>
+                    <li><span class="snum">4</span> Find binaries in the <code>dist/</code> folder</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+    <div class="wrap center-txt">
+        <div class="sec-lbl c-orange"><i class="fa-solid fa-message"></i> Support</div>
+        <h2 class="sec-title">Frequently Asked Questions</h2>
+        <div class="faq-grid" style="text-align:left">
+            <div class="faq">
+                <h4><i class="fa-solid fa-image"></i> Thumbnails aren't showing up</h4>
+                <p>After installing, restart Windows Explorer. Open a command prompt and run <code>taskkill /f /im explorer.exe</code> then <code>start explorer.exe</code>. Make sure folder view is set to Large Icons or larger. If it still doesn't work, re-run INSTALL.bat as administrator.</p>
+            </div>
+            <div class="faq">
+                <h4><i class="fa-solid fa-shield-halved"></i> Is ProcreateViewer safe?</h4>
+                <p>Yes. The project is 100% open source (MIT License). Every line of code is auditable on GitHub. The application runs completely offline — zero telemetry, zero network calls, zero data collection of any kind.</p>
+            </div>
+            <div class="faq">
+                <h4><i class="fa-solid fa-pen-nib"></i> Can I edit layers or draw?</h4>
+                <p>ProcreateViewer is a viewer and exporter — not an editor. You can inspect every layer, toggle visibility, and export the result, but actual drawing and layer editing still requires Procreate on an iPad.</p>
+            </div>
+            <div class="faq">
+                <h4><i class="fa-solid fa-trash-can"></i> How do I uninstall?</h4>
+                <p>If you used the Setup installer: open Settings → Apps → search "ProcreateViewer" → Uninstall. If you used the script: right-click <code>UNINSTALL.bat</code> → Run as administrator. Both methods fully clean up all registry entries.</p>
+            </div>
+            <div class="faq">
+                <h4><i class="fa-solid fa-file-circle-question"></i> Which Procreate versions work?</h4>
+                <p>ProcreateViewer supports artwork from Procreate 4.x and 5.x (the ZIP + binary plist format). Files from Procreate Dreams or other Savage Interactive apps may not be compatible.</p>
+            </div>
+            <div class="faq">
+                <h4><i class="fa-solid fa-desktop"></i> What are the system requirements?</h4>
+                <p>Windows 10 or Windows 11 (x64). The exe is ~25 MB and fully standalone — no Python, no .NET SDK needed. Thumbnails require .NET Framework 4 which is pre-installed on every Windows 10/11 machine.</p>
+            </div>
+            <div class="faq">
+                <h4><i class="fa-solid fa-palette"></i> How accurate is the preview?</h4>
+                <p>The thumbnail comes directly from Procreate's own generated preview (stored at <code>QuickLook/Thumbnail.png</code> inside the archive). The viewer's compositing engine also supports reading raw layer tiles for per-layer rendering.</p>
+            </div>
+            <div class="faq">
+                <h4><i class="fa-solid fa-code-pull-request"></i> Can I contribute?</h4>
+                <p>Absolutely! The project is on <a href="https://github.com/NothingData/ProcreateViewer">GitHub</a>. Open issues for bugs or feature requests, submit pull requests, or just star the repo to show support.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section sec-alt">
+    <div class="wrap">
+        <h2>Start Viewing Your Procreate Art on&nbsp;Windows</h2>
+        <p>Download ProcreateViewer — it's free, open source, and runs completely offline. No account required.</p>
+        <div class="hero-btns">
+            <a href="https://github.com/NothingData/ProcreateViewer/releases" class="btn btn-blue"><i class="fa-solid fa-arrow-down"></i> Download Free</a>
+            <a href="https://github.com/NothingData/ProcreateViewer" class="btn btn-dark"><i class="fa-solid fa-star"></i> Star on GitHub</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="wrap">
+        <div class="ft-grid">
+            <div>
+                <div class="ft-brand">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADcUlEQVR4nMWXv0srWRTHv+eciwwkUcEfyAOximAEi2W12WzzeBIevE4C/qheuaX/gI1gIxY2bmlpYRtZC9lmsXGXFIaJoAjC4jOgYiRZ0GTuPVtE89yn687EhP3CwDAznO/nnnvmnnsJDQkAOzExEVPVOVX96JwbxlcRWpM+3jDzn0T0CxFtHR4e/vXoSdlsVra3t+3Y2NiPIvIzEY0DgKqCqFXfbyiexFJV31r709HR0W/ZbFYIAMbHx39g5l8BdFlrLbXL+TmIiogAqDnn3vu+v0+pVCpORHlmTlprAyIynTB/AhGIiHHOnajqdwxg7sHcdtocAIjIWGstMycBzDERfQKgHcr6v0HgwfOTUdV3aFR5KIKXQFX1hS9fDwOAVPVdpJSrKpxzz54zM5gZRARrbSSSSADGGBhjno24VquhUqlAVZFIJCJlJBSAiKBcLmNxcRGzs7MIggDMDOccVBV3d3c4OzvDzs4OcrkcPM9rLwAAOOfQ29uLoaGhF98nk0lMT09jcnISS0tLiMViL07Xt+LQqACCIGjWQT6fx/LyMjY2NnB6etp8v7CwgHQ6jUqlAub/Dh8JgIhARGBmFAoFrK6uYmVlBfPz87i4uAAzQ1WRTqdRr9dDLeWRAJ7K8zwMDAxgeHgYpVIJhUKhOeKenp5Qowci/gVPVavVcHt72whiDEZGRppN5+rqKtT8vwlgcHAQU1NT6O/vx8zMDEZHR+Gcg4hgb28PnueF+h1bArDWIpPJIJPJ/OO5iGBtbQ35fB7d3d2hstCW5lOtVnF8fIzNzU3kcjkkEonOToGIYHd3F+vr64jH47i+vsb5+Tnu7+9Dj/xNAABweXmJg4MD9PX1gYjQ1dUFz/M62wtUtVlYxhjE43HEYrHmAhXVPDKAMaa5uIgInHPNftCqQgMwM8rlMkqlEgDg5uYm9GLzmiiVSv0uIt+7RuW8GlFEYEyD2VqLIAha9XXMzNbaPyJNQRAEqNfrAL72hbcqEsBjIwJa2oa9DEBEX9A4wYSK2CZjRWNT+oVVNYfGBrEdgcO5N7xIVXMMYMs5dyIioqotV1UE80BExDl3AmCLi8ViFcBnADURMapqAbhOXKpqRcQAqAH4XCwWq5zNZsX3/f0gCD6oqi8iwsxMRNwuPcZ6yLIfBMEH3/f3m4dT/I/H878B8KrGyBMQ4fAAAAAASUVORK5CYII=" alt="">
+                    ProcreateViewer
+                </div>
+                <p class="ft-about">Free, open-source application for opening and exporting Procreate artwork files on Windows. Built for digital artists who work across iPad and PC.</p>
+                <p class="ft-note">Not affiliated with Savage Interactive Pty Ltd or the Procreate app.</p>
+            </div>
+            <div class="ft-col">
+                <h5>Product</h5>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#demo">Web Demo</a></li>
+                    <li><a href="#install">Installation</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="ft-col">
+                <h5>Developers</h5>
+                <ul>
+                    <li><a href="https://github.com/NothingData/ProcreateViewer">Source Code</a></li>
+                    <li><a href="#tech">Technical Docs</a></li>
+                    <li><a href="https://github.com/NothingData/ProcreateViewer/issues">Report a Bug</a></li>
+                    <li><a href="https://github.com/NothingData/ProcreateViewer/pulls">Contribute</a></li>
+                </ul>
+            </div>
+            <div class="ft-col">
+                <h5>Resources</h5>
+                <ul>
+                    <li><a href="https://github.com/NothingData/ProcreateViewer/releases">All Releases</a></li>
+                    <li><a href="https://github.com/NothingData/ProcreateViewer/blob/main/LICENSE">MIT License</a></li>
+                    <li><a href="https://github.com/NothingData/ProcreateViewer/blob/main/CHANGELOG.md">Changelog</a></li>
+                    <li><a href="https://github.com/NothingData/ProcreateViewer/blob/main/README.md">README</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="ft-bot">
+            <span>&copy; 2026 ProcreateViewer &middot; Open source under MIT License</span>
+            <div class="ft-soc">
+                <a href="https://github.com/NothingData/ProcreateViewer" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));t&&t.scrollIntoView({behavior:'smooth',block:'start'})})});
+
+const uz=document.getElementById('uploadZone'),fi=document.getElementById('fileInput'),pr=document.getElementById('previewResult'),pi=document.getElementById('previewImage'),fm=document.getElementById('fileMeta');
+uz.addEventListener('click',()=>fi.click());
+uz.addEventListener('dragover',e=>{e.preventDefault();uz.style.borderColor='#3b82f6';uz.style.background='rgba(59,130,246,.04)'});
+uz.addEventListener('dragleave',()=>{uz.style.borderColor='';uz.style.background=''});
+uz.addEventListener('drop',e=>{e.preventDefault();uz.style.borderColor='';uz.style.background='';e.dataTransfer.files.length&&proc(e.dataTransfer.files[0])});
+fi.addEventListener('change',e=>{e.target.files.length&&proc(e.target.files[0])});
+
+async function proc(file){
+    if(!file.name.toLowerCase().endsWith('.procreate')){alert('Please select a .procreate file.');return}
+    uz.innerHTML='<div class="drop-ico"><i class="fa-solid fa-spinner fa-spin"></i></div><h4>Reading file\u2026</h4>';
+    try{
+        const zip=new JSZip(),c=await zip.loadAsync(file);
+        let tp=null;
+        for(const p of['QuickLook/Thumbnail.png','QuickLook/thumbnail.png','Thumbnail.png']){if(c.file(p)){tp=p;break}}
+        if(!tp){
+            for(const n of Object.keys(c.files)){if(n.startsWith('QuickLook/')&&n.toLowerCase().endsWith('.png')){tp=n;break}}
+        }
+        if(tp){
+            const d=await c.file(tp).async('base64');
+            pi.src='data:image/png;base64,'+d;
+            const fs=Object.keys(c.files),uids=new Set();
+            fs.forEach(f=>{const p=f.split('/');if(p.length>1&&p[0].length>20)uids.add(p[0])});
+            const mb=(file.size/1048576).toFixed(2);
+            fm.innerHTML=`
+                <div class="meta-row"><span class="meta-k">File Name</span><span class="meta-v">${file.name}</span></div>
+                <div class="meta-row"><span class="meta-k">File Size</span><span class="meta-v">${mb} MB</span></div>
+                <div class="meta-row"><span class="meta-k">Estimated Layers</span><span class="meta-v">${uids.size}</span></div>
+                <div class="meta-row"><span class="meta-k">Archive Entries</span><span class="meta-v">${fs.length} files</span></div>`;
+            uz.style.display='none';pr.style.display='block';
+        }else throw new Error('No thumbnail found in this file.')
+    }catch(err){
+        uz.innerHTML=`<div class="drop-ico"><i class="fa-solid fa-triangle-exclamation" style="color:var(--red)"></i></div><h4>Error</h4><p style="color:var(--text-3)">${err.message}</p><p style="font-size:.82rem;color:var(--text-3);margin-top:8px">Click to try again</p>`;
+    }
+}
+function resetDemo(){
+    uz.innerHTML='<div class="drop-ico"><i class="fa-solid fa-cloud-arrow-up"></i></div><h4>Drop a .procreate file here</h4><p>or click to browse</p>';
+    uz.style.display='';pr.style.display='none';fi.value='';
+}
+</script>
+</body>
+</html>
