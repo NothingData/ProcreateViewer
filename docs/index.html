@@ -20,7 +20,7 @@
     <meta name="twitter:description" content="Open, preview and export .procreate files on your Windows PC. Free, offline, open source.">
 
     <link rel="canonical" href="https://nothingdata.github.io/ProcreateViewer/">
-    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADcUlEQVR4nMWXv0srWRTHv+eciwwkUcEfyAOximAEi2W12WzzeBIevE4C/qheuaX/gI1gIxY2bmlpYRtZC9lmsXGXFIaJoAjC4jOgYiRZ0GTuPVtE89yn687EhP3CwDAznO/nnnvmnnsJDQkAOzExEVPVOVX96JwbxlcRWpM+3jDzn0T0CxFtHR4e/vXoSdlsVra3t+3Y2NiPIvIzEY0DgKqCqFXfbyiexFJV31r709HR0W/ZbFYIAMbHx39g5l8BdFlrLbXL+TmIiogAqDnn3vu+v0+pVCpORHlmTlprAyIynTB/AhGIiHHOnajqdwxg7sHcdtocAIjIWGstMycBzDERfQKgHcr6v0HgwfOTUdV3aFR5KIKXQFX1hS9fDwOAVPVdpJSrKpxzz54zM5gZRARrbSSSSADGGBhjno24VquhUqlAVZFIJCJlJBSAiKBcLmNxcRGzs7MIggDMDOccVBV3d3c4OzvDzs4OcrkcPM9rLwAAOOfQ29uLoaGhF98nk0lMT09jcnISS0tLiMViL07Xt+LQqACCIGjWQT6fx/LyMjY2NnB6etp8v7CwgHQ6jUqlAub/Dh8JgIhARGBmFAoFrK6uYmVlBfPz87i4uAAzQ1WRTqdRr9dDLeWRAJ7K8zwMDAxgeHgYpVIJhUKhOeKenp5Qowci/gVPVavVcHt72whiDEZGRppN5+rqKtT8vwlgcHAQU1NT6O/vx8zMDEZHR+Gcg4hgb28PnueF+h1bArDWIpPJIJPJ/OO5iGBtbQ35fB7d3d2hstCW5lOtVnF8fIzNzU3kcjkkEonOToGIYHd3F+vr64jH47i+vsb5+Tnu7+9Dj/xNAABweXmJg4MD9PX1gYjQ1dUFz/M62wtUtVlYxhjE43HEYrHmAhXVPDKAMaa5uIgInHPNftCqQgMwM8rlMkqlEgDg5uYm9GLzmiiVSv0uIt+7RuW8GlFEYEyD2VqLIAha9XXMzNbaPyJNQRAEqNfrAL72hbcqEsBjIwJa2oa9DEBEX9A4wYSK2CZjRWNT+oVVNYfGBrEdgcO5N7xIVXMMYMs5dyIioqotV1UE80BExDl3AmCLi8ViFcBnADURMapqAbhOXKpqRcQAqAH4XCwWq5zNZsX3/f0gCD6oqi8iwsxMRNwuPcZ6yLIfBMEH3/f3m4dT/I/H878B8KrGyBMQ4fAAAAAASUVORK5CYII=">
+    <link rel="icon" type="image/webp" href="assets/logo.webp">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -174,6 +174,43 @@
         .faq h4 i{color:var(--orange);font-size:.9rem}
         .faq p{color:var(--text-2);font-size:.92rem;line-height:1.75}
 
+        /* ── BEFORE / AFTER ── */
+        .ba-container{position:relative;max-width:960px;margin:0 auto;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border-2);cursor:col-resize;user-select:none;-webkit-user-select:none;aspect-ratio:16/10;background:var(--bg-card)}
+        .ba-container img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+        .ba-after{clip-path:inset(0 0 0 0)}
+        .ba-before{clip-path:inset(0 50% 0 0)}
+        .ba-slider{position:absolute;top:0;bottom:0;left:50%;width:4px;background:var(--blue);z-index:10;transform:translateX(-50%);transition:none}
+        .ba-slider::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;background:var(--blue);border-radius:50%;box-shadow:0 0 20px rgba(59,130,246,.4)}
+        .ba-slider::after{content:'\f337';font-family:'Font Awesome 6 Free';font-weight:900;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-size:1.1rem;z-index:11}
+        .ba-label{position:absolute;bottom:20px;padding:8px 20px;background:rgba(10,10,10,.85);backdrop-filter:blur(8px);border-radius:50px;font-size:.82rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;z-index:5;border:1px solid var(--border-2)}
+        .ba-label-before{left:20px;color:var(--red)}
+        .ba-label-after{right:20px;color:var(--green)}
+        .ba-hint{text-align:center;margin-top:20px;color:var(--text-3);font-size:.88rem;display:flex;align-items:center;justify-content:center;gap:8px}
+
+        /* ── SCREENSHOTS ── */
+        .ss-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+        .ss-item{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:transform .25s,border-color .25s,box-shadow .25s;aspect-ratio:16/10;background:var(--bg-card)}
+        .ss-item:hover{transform:translateY(-6px) scale(1.02);border-color:var(--blue);box-shadow:0 12px 40px rgba(59,130,246,.15)}
+        .ss-item img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+        .ss-item:hover img{transform:scale(1.05)}
+        .ss-item .ss-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.7) 0%,transparent 50%);opacity:0;transition:opacity .25s;display:flex;align-items:flex-end;padding:20px}
+        .ss-item:hover .ss-overlay{opacity:1}
+        .ss-overlay span{color:#fff;font-size:.88rem;font-weight:600}
+        .ss-zoom{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.7);opacity:0;transition:opacity .25s,transform .25s;width:48px;height:48px;background:rgba(59,130,246,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem}
+        .ss-item:hover .ss-zoom{opacity:1;transform:translate(-50%,-50%) scale(1)}
+
+        /* ── LIGHTBOX ── */
+        .lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);backdrop-filter:blur(20px);align-items:center;justify-content:center;flex-direction:column;padding:40px}
+        .lightbox.open{display:flex}
+        .lightbox img{max-width:90vw;max-height:80vh;border-radius:var(--radius);box-shadow:0 20px 80px rgba(0,0,0,.6);object-fit:contain}
+        .lb-caption{color:var(--text-2);font-size:.95rem;margin-top:20px;font-weight:500}
+        .lb-close{position:absolute;top:24px;right:32px;background:var(--bg-card);border:1px solid var(--border-2);color:var(--text);width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;cursor:pointer;transition:background .15s,border-color .15s}
+        .lb-close:hover{background:var(--bg-card-h);border-color:#444}
+        .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:var(--bg-card);border:1px solid var(--border-2);color:var(--text);width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;cursor:pointer;transition:background .15s,border-color .15s}
+        .lb-nav:hover{background:var(--bg-card-h);border-color:#444}
+        .lb-prev{left:24px}.lb-next{right:24px}
+        .lb-counter{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:var(--text-3);font-size:.82rem;font-weight:600}
+
         /* ── CTA ── */
         .cta-section{text-align:center;padding:120px 0}
         .cta-section h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;margin-bottom:20px}
@@ -194,13 +231,13 @@
         .ft-soc a{color:var(--text-3);font-size:1.15rem;transition:color .15s}.ft-soc a:hover{color:var(--text)}
 
         /* ── RESPONSIVE ── */
-        @media(max-width:1080px){.feat-grid,.inst-grid{grid-template-columns:repeat(2,1fr)}.tech-grid{grid-template-columns:1fr}.demo-split{grid-template-columns:1fr;gap:40px}.ft-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:1080px){.feat-grid,.inst-grid{grid-template-columns:repeat(2,1fr)}.tech-grid{grid-template-columns:1fr}.demo-split{grid-template-columns:1fr;gap:40px}.ft-grid{grid-template-columns:repeat(2,1fr)}.ss-grid{grid-template-columns:repeat(2,1fr)}}
         @media(max-width:720px){
             .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);flex-direction:column;padding:24px;gap:20px}
             .nav-links.open{display:flex}
             .mobile-toggle{display:block}
             .hero h1{font-size:2.4rem}.hero{padding:130px 0 80px}
-            .feat-grid,.inst-grid,.cmp-grid,.faq-grid{grid-template-columns:1fr}
+            .feat-grid,.inst-grid,.cmp-grid,.faq-grid,.ss-grid{grid-template-columns:1fr}
             .stats{gap:24px}
             .ft-grid{grid-template-columns:1fr;gap:36px}
             .ft-bot{flex-direction:column;gap:16px;text-align:center}
@@ -213,7 +250,7 @@
 <nav>
     <div class="wrap nav-inner">
         <div class="nav-brand">
-            <img src="/..resources/logo.ico" alt="ProcreateViewer">
+            <img src="assets/logo.webp" alt="ProcreateViewer">
             ProcreateViewer
         </div>
         <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">
@@ -221,6 +258,7 @@
         </button>
         <ul class="nav-links">
             <li><a href="#features">Features</a></li>
+            <li><a href="#screenshots">Screenshots</a></li>
             <li><a href="#demo">Demo</a></li>
             <li><a href="#tech">Technical</a></li>
             <li><a href="#install">Install</a></li>
@@ -290,6 +328,23 @@
                 </ul>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section id="beforeafter">
+    <div class="wrap center-txt">
+        <div class="sec-lbl c-green"><i class="fa-solid fa-eye"></i> Before &amp; After</div>
+        <h2 class="sec-title">See the Difference Instantly</h2>
+        <p class="sec-desc">Drag the slider to compare your Windows File Explorer experience with and without ProcreateViewer installed. Your .procreate files go from blank icons to rich visual thumbnails.</p>
+        <div class="ba-container" id="baContainer">
+            <img src="assets/after.webp" alt="After ProcreateViewer" class="ba-after">
+            <img src="assets/before.webp" alt="Before ProcreateViewer" class="ba-before">
+            <div class="ba-slider" id="baSlider"></div>
+            <div class="ba-label ba-label-before"><i class="fa-solid fa-circle-xmark"></i>&ensp;Before</div>
+            <div class="ba-label ba-label-after"><i class="fa-solid fa-circle-check"></i>&ensp;After</div>
+        </div>
+        <p class="ba-hint"><i class="fa-solid fa-arrows-left-right"></i> Drag the slider to compare</p>
     </div>
 </section>
 
@@ -369,6 +424,57 @@
         </div>
     </div>
 </section>
+
+<!-- SCREENSHOTS -->
+<section class="sec-alt" id="screenshots">
+    <div class="wrap center-txt">
+        <div class="sec-lbl c-cyan"><i class="fa-solid fa-camera"></i> Screenshots</div>
+        <h2 class="sec-title">See It in Action</h2>
+        <p class="sec-desc">Take a closer look at ProcreateViewer's interface — from the full artwork viewer to the layer panel, metadata display, and batch export tools.</p>
+        <div class="ss-grid">
+            <div class="ss-item" onclick="openLightbox(0)">
+                <img src="assets/screen0.webp" alt="ProcreateViewer main interface" loading="lazy">
+                <div class="ss-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="ss-overlay"><span>Main Viewer Interface</span></div>
+            </div>
+            <div class="ss-item" onclick="openLightbox(1)">
+                <img src="assets/screen1.webp" alt="Layer inspection panel" loading="lazy">
+                <div class="ss-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="ss-overlay"><span>Layer Inspection Panel</span></div>
+            </div>
+            <div class="ss-item" onclick="openLightbox(2)">
+                <img src="assets/screen2.webp" alt="File Explorer thumbnails" loading="lazy">
+                <div class="ss-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="ss-overlay"><span>Explorer Thumbnails</span></div>
+            </div>
+            <div class="ss-item" onclick="openLightbox(3)">
+                <img src="assets/screen3.webp" alt="Metadata and file details" loading="lazy">
+                <div class="ss-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="ss-overlay"><span>Metadata &amp; File Details</span></div>
+            </div>
+            <div class="ss-item" onclick="openLightbox(4)">
+                <img src="assets/screen4.webp" alt="Batch export tool" loading="lazy">
+                <div class="ss-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="ss-overlay"><span>Batch Export Tool</span></div>
+            </div>
+            <div class="ss-item" onclick="openLightbox(5)">
+                <img src="assets/screen5.webp" alt="Additional view" loading="lazy">
+                <div class="ss-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                <div class="ss-overlay"><span>Full Artwork Export</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <button class="lb-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lb-nav lb-prev" onclick="navLightbox(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="lb-nav lb-next" onclick="navLightbox(1)"><i class="fa-solid fa-chevron-right"></i></button>
+    <img id="lbImage" src="" alt="Screenshot preview">
+    <div class="lb-caption" id="lbCaption"></div>
+    <div class="lb-counter" id="lbCounter"></div>
+</div>
 
 <!-- DEMO -->
 <section class="sec-alt" id="demo">
@@ -655,6 +761,34 @@ async function proc(file){
         uz.innerHTML=`<div class="drop-ico"><i class="fa-solid fa-triangle-exclamation" style="color:var(--red)"></i></div><h4>Error</h4><p style="color:var(--text-3)">${err.message}</p><p style="font-size:.82rem;color:var(--text-3);margin-top:8px">Click to try again</p>`;
     }
 }
+/* ── Before/After slider ── */
+const bac=document.getElementById('baContainer'),bas=document.getElementById('baSlider'),bab=bac.querySelector('.ba-before');
+let baDragging=false;
+function baUpdate(x){const r=bac.getBoundingClientRect();let p=((x-r.left)/r.width)*100;p=Math.max(0,Math.min(100,p));bas.style.left=p+'%';bab.style.clipPath='inset(0 '+(100-p)+'% 0 0)'}
+bac.addEventListener('mousedown',e=>{baDragging=true;baUpdate(e.clientX)});
+window.addEventListener('mousemove',e=>{if(baDragging)baUpdate(e.clientX)});
+window.addEventListener('mouseup',()=>baDragging=false);
+bac.addEventListener('touchstart',e=>{baDragging=true;baUpdate(e.touches[0].clientX)},{passive:true});
+window.addEventListener('touchmove',e=>{if(baDragging)baUpdate(e.touches[0].clientX)},{passive:true});
+window.addEventListener('touchend',()=>baDragging=false);
+
+/* ── Lightbox / Screenshots ── */
+const lbScreens=[
+  {src:'assets/screen0.webp',caption:'Main Viewer Interface'},
+  {src:'assets/screen1.webp',caption:'Layer Inspection Panel'},
+  {src:'assets/screen2.webp',caption:'Explorer Thumbnails'},
+  {src:'assets/screen3.webp',caption:'Metadata & File Details'},
+  {src:'assets/screen4.webp',caption:'Batch Export Tool'},
+  {src:'assets/screen5.webp',caption:'Full Artwork Preview'}
+];
+let lbIdx=0;
+function openLightbox(i){lbIdx=i;const lb=document.getElementById('lightbox');lb.classList.add('open');updateLB();document.body.style.overflow='hidden'}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow=''}
+function navLightbox(d){lbIdx=(lbIdx+d+lbScreens.length)%lbScreens.length;updateLB()}
+function updateLB(){document.getElementById('lbImage').src=lbScreens[lbIdx].src;document.getElementById('lbCaption').textContent=lbScreens[lbIdx].caption;document.getElementById('lbCounter').textContent=(lbIdx+1)+' / '+lbScreens.length}
+document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===e.currentTarget)closeLightbox()});
+document.addEventListener('keydown',e=>{const lb=document.getElementById('lightbox');if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLightbox();if(e.key==='ArrowLeft')navLightbox(-1);if(e.key==='ArrowRight')navLightbox(1)});
+
 function resetDemo(){
     uz.innerHTML='<div class="drop-ico"><i class="fa-solid fa-cloud-arrow-up"></i></div><h4>Drop a .procreate file here</h4><p>or click to browse</p>';
     uz.style.display='';pr.style.display='none';fi.value='';
