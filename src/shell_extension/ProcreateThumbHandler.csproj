@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <AssemblyName>ProcreateThumbHandler</AssemblyName>
+    <RootNamespace>ProcreateThumbHandler</RootNamespace>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <ComVisible>true</ComVisible>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <AssemblyTitle>Procreate Thumbnail Handler</AssemblyTitle>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Description>Windows Shell thumbnail provider for .procreate files</Description>
+    <Company>ProcreateViewer</Company>
+    <Product>ProcreateThumbHandler</Product>
+    <Copyright>MIT License</Copyright>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+  </ItemGroup>
+
+</Project>
